@@ -1,13 +1,16 @@
 import axios from 'axios';
 import './App.css';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import SinglePost from './components/SinglePost'
 
 function App() {
+  const [ allPosts, setAllPosts ] = useState([]);
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { posts } = await axios.get("https://jsonplaceholder.typicode.com/posts");
-        return posts;
+        const { data } = await axios.get("https://jsonplaceholder.typicode.com/posts");
+        setAllPosts(data);
       } catch (error) {
         console.log(error);
       }
@@ -17,7 +20,7 @@ function App() {
   
   return (
     <div className="App">
-
+      {allPosts.map((p, i) => <SinglePost key={i} title={p.title} body={p.body}/>)}
     </div>
   );
 }
