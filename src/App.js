@@ -19,14 +19,16 @@ function App() {
   }, []);
   
   return (
-    <div className="App">
-      {allPosts.map((p, i) => <SinglePost 
-        key={i} 
-        title={p.title} 
-        body={p.body}
-        userId={p.userId}
-        />)
-      }
+    <div className="app-wrapper">
+      <div className='cards-container'>
+        {allPosts.map((p, i) => <SinglePost 
+          key={i} 
+          title={p.title} 
+          body={p.body}
+          userId={p.userId}
+          />)
+        }
+      </div>
     </div>
   );
 }
