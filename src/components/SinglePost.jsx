@@ -1,6 +1,7 @@
 import { useState } from "react";
+import UserInfo from "./UserInfo";
 
-const SinglePost = ( { title, body } ) => {
+const SinglePost = ( { title, body, userId } ) => {
   const [ showUserInfo, setShowUserInfo ] = useState(false);
 
   const toggleUserInfo = () => {
@@ -12,7 +13,7 @@ const SinglePost = ( { title, body } ) => {
       <h2>{title}</h2>
       <p>{body}</p>
       <button onClick={toggleUserInfo}>Show author</button>
-      {showUserInfo && <p>Test</p>}
+      {showUserInfo && <UserInfo userId={userId}/>}
     </div>
   );
 }

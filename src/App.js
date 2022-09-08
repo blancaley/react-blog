@@ -16,11 +16,17 @@ function App() {
       }
     }
     fetchPosts();
-  }, [])
+  }, []);
   
   return (
     <div className="App">
-      {allPosts.map((p, i) => <SinglePost key={i} title={p.title} body={p.body}/>)}
+      {allPosts.map((p, i) => <SinglePost 
+        key={i} 
+        title={p.title} 
+        body={p.body}
+        userId={p.userId}
+        />)
+      }
     </div>
   );
 }
