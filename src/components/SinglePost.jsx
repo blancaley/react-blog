@@ -1,8 +1,19 @@
+import axios from "axios";
 import { useState } from "react";
 import UserInfo from "./UserInfo";
 
 const SinglePost = ( { title, body, userId } ) => {
   const [ showUserInfo, setShowUserInfo ] = useState(false);
+  const [ userInfo, setUserInfo ] = useState();
+
+  const fetchUserInfo = async () => {
+    try {
+      const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
+      setUserInfo(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const toggleUserInfo = () => {
     setShowUserInfo(!showUserInfo);
@@ -13,7 +24,7 @@ const SinglePost = ( { title, body, userId } ) => {
       <h2>{title}</h2>
       <p>{body}</p>
       <button onClick={toggleUserInfo}>Show author</button>
-      {showUserInfo && <UserInfo userId={userId}/>}
+      {showUserInfo && <UserInfo fetchUserInfo={fetchUserInfo} userInfo={userInfo}/>}
     </div>
   );
 }

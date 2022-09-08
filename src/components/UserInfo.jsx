@@ -1,18 +1,9 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 
-const UserInfo = ({ userId }) => {
-  const [ userInfo, setUserInfo ] = useState({});
+const UserInfo = ({ fetchUserInfo, userInfo }) => {
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`);
-        setUserInfo(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    if (userInfo) return;
     fetchUserInfo();
   }, []);
 
