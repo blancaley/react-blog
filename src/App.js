@@ -1,25 +1,15 @@
-import axios from 'axios';
 import './App.css';
-import { useEffect, useState } from 'react'
+import usePosts from './hooks/usePosts';
 import SinglePost from './components/SinglePost'
 
 function App() {
-  const [ allPosts, setAllPosts ] = useState([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const { data } = await axios.get("https://jsonplaceholder.typicode.com/posts");
-        setAllPosts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchPosts();
-  }, []);
+  const allPosts = usePosts();
   
   return (
     <div className="app-wrapper">
+      <header className='app-header'>
+        <h1>Blogginlägg (React + API)</h1>
+      </header>
       <div className='cards-container'>
         {allPosts.map((p, i) => <SinglePost 
           key={i} 

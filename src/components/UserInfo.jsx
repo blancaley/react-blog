@@ -9,9 +9,7 @@ const UserInfo = ({ fetchUserInfo, userInfo }) => {
 
   return (
     <div>
-      <p>{userInfo?.name}</p>
-      <p>{userInfo?.email}</p>
-      <p>{userInfo?.address?.city}</p>
+      <p>{userInfo?.name} | {userInfo?.email} | {userInfo?.address?.city}</p>
     </div>
   );
 }

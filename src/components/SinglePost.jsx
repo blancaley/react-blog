@@ -21,8 +21,10 @@ const SinglePost = ( { title, body, userId } ) => {
 
   return (
     <div className="card">
-      <h2>{title}</h2>
-      <p>{body}</p>
+      <div className="inner-card-main">
+        <h2>{title}</h2>
+        <p>{body}</p>
+      </div>
       <button onClick={toggleUserInfo} className="author-btn">{showUserInfo ? "Hide": "Show"} author</button>
       {showUserInfo && <UserInfo fetchUserInfo={fetchUserInfo} userInfo={userInfo}/>}
     </div>
